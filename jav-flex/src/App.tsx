@@ -112,7 +112,7 @@ function App() {
             </select>
           </fieldset>
         </form>     
-        <section className={`bg-gray-600 rounded font-bold text-xl h-[400px] w-[800px] border-4 ${flex && "flex"} ${gap} ${direction} ${justify} $c ${items}`}>
+        <section className={`bg-gray-600 rounded font-bold text-xl h-[400px] w-[800px] border-4 ${flex && "flex"} ${gapValue} ${directionValue} ${justifyValue} $c ${itemsValue}`}>
           <div className="bg-gray-900 w-16 h-16 border-4 flex justify-center items-center shadow-lg">1</div>
           <div className="bg-gray-900 w-16 h-16 border-4 flex justify-center items-center shadow-lg">2</div>
           <div className="bg-gray-900 w-16 h-16 border-4 flex justify-center items-center shadow-lg">3</div>        
