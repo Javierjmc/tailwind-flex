@@ -3,10 +3,59 @@ import { useState } from "react"
 
 function App() {
   const [flex,setFlex]=useState(false)
-  const [gap,setGap]=useState('')
-  const [direction,setDirection]=useState('')
-  const [justify,setJustify]=useState('')
-  const [items,setItems]=useState('')
+  const [gap,setGap]=useState(false)
+  const [gapValue,setGapValue]=useState('')
+  const [direction,setDirection]=useState(false)
+  const [directionValue,setDirectionValue]=useState('')
+  const [justify,setJustify]=useState(false)
+  const [justifyValue,setJustifyValue]=useState('')
+  const [items,setItems]=useState(false)
+  const [itemsValue,setItemsValue]=useState('')
+
+  const handlerChangeGap = (event:Event) => {
+    setGap(false)
+    if( event.target === null ) return
+    if( event.target instanceof HTMLSelectElement === false ) return
+    const newValue = event.target.value
+    setTimeout(() => {
+      setGapValue( newValue )
+      setGap(true)
+    },100)
+  }
+
+  const handlerChangeDirection = (event:Event) => {
+    setDirection(false)
+    if( event.target === null ) return
+    if( event.target instanceof HTMLSelectElement === false ) return
+    const newValue = event.target.value
+    setTimeout(() => {
+      setDirectionValue( newValue )
+      setDirection(true)
+    },100)
+  }
+
+  const handlerChangeJustify = (event:Event) => {
+    setJustify(false)
+    if( event.target === null ) return
+    if( event.target instanceof HTMLSelectElement === false ) return
+    const newValue = event.target.value
+    setTimeout(() => {
+      setJustifyValue( newValue )
+      setJustify(true)
+    },100)
+  }
+
+  const handlerChangeItems = (event:Event) => {
+    setItems(false)
+    if( event.target === null ) return
+    if( event.target instanceof HTMLSelectElement === false ) return
+    const newValue = event.target.value
+    setTimeout(() => {
+      setItemsValue( newValue )
+      setItems(true)
+    },100)
+  }
+
   return (
     <div className="bg-gray-800 text-gray-200 px-4 py-4 h-screen flex flex-col gap-8">
       <nav>
@@ -22,7 +71,7 @@ function App() {
             <label className="font-bold" htmlFor="">flex</label>
           </fieldset>
           <fieldset className="flex gap-2">
-            <select onChange={(event)=>setGap(event.target.value)} name="" id="" className="px-0.5 py-1 w-32 bg-gray-600 shadow-lg">
+            <select onChange={handlerChangeGap} name="" id="" className="px-0.5 py-1 w-32 bg-gray-600 shadow-lg">
               <option value="gap-0">gap-0</option>
               <option value="gap-1">gap-1</option>
               <option value="gap-2">gap-2</option>
@@ -37,7 +86,7 @@ function App() {
             </select>
           </fieldset>
           <fieldset className="flex gap-2">
-            <select onChange={(event)=>setDirection(event.target.value)} name="" id="" className="px-0.5 py-1 w-32 bg-gray-600 shadow-lg">
+            <select onChange={handlerChangeDirection} name="" id="" className="px-0.5 py-1 w-32 bg-gray-600 shadow-lg">
               <option value="flex-row">flex-row</option>
               <option value="flex-row-reverse">flex-row-reverse</option>
               <option value="flex-col">flex-col</option>
@@ -45,7 +94,7 @@ function App() {
             </select>
           </fieldset>
           <fieldset className="flex gap-2">
-            <select onChange={(event)=>setJustify(event.target.value)} name="" id="" className="px-0.5 py-1 w-32 bg-gray-600 shadow-lg">
+            <select onChange={handlerChangeJustify} name="" id="" className="px-0.5 py-1 w-32 bg-gray-600 shadow-lg">
               <option value="justify-start">justify-start</option>
               <option value="justify-center">justify-center</option>
               <option value="justify-end">justify-end</option>
@@ -55,7 +104,7 @@ function App() {
             </select>
           </fieldset>
           <fieldset className="flex gap-2">
-            <select onChange={(event)=>setItems(event.target.value)} name="" id="" className="px-0.5 py-1 w-32 bg-gray-600 shadow-lg">
+            <select onChange={handlerChangeItems} name="" id="" className="px-0.5 py-1 w-32 bg-gray-600 shadow-lg">
               <option value="items-start">items-start</option>
               <option value="items-end">items-end</option>
               <option value="items-center">items-center</option>
@@ -72,7 +121,14 @@ function App() {
 
       <pre className="mx-auto">
         <code className="text-gray-100 text-lg">
-          &lt;div className= <span className="font-bold text-orange-300">"{flex && "flex"} {gap} {direction} {justify} {items}"</span> &gt;
+          &lt;div className=
+            <span className="font-bold text-orange-300">"
+              <span className={(flex?"inline-block":"hidden") + " px-1 animate-see-me"}>flex</span>
+              <span className={(gap?"inline-block":"hidden") + " px-1 animate-see-me"}>{ gapValue }</span>
+              <span className={(direction?"inline-block":"hidden") + " px-1 animate-see-me"}>{ directionValue }</span>
+              <span className={(justify?"inline-block":"hidden") + " px-1 animate-see-me"}>{ justifyValue }</span>
+              <span className={(items?"inline-block":"hidden") + " px-1 animate-see-me"}>{ itemsValue }</span>
+            "</span> &gt;
             <br />
             <div className="ml-5 text-gray-300">
               &lt;div&gt;1&lt;/div&gt;
